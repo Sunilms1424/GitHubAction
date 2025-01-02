@@ -36,3 +36,13 @@ jobs:
       run: |
         cd src
         python -m pytest addition.py
+    - name: sonar scanner
+      env: 
+        SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
+        SONAR_HOST_URL: ${{secrets.SONAR_HOST_URL}} 
+      run: |
+        /usr/local/sonar-scanner/bin/sonar-scanner \
+          -Dsonar.projectKey=amazon \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=http://127.0.0.1:9000 \
+          -Dsonar.login=$SONAR_TOKEN
