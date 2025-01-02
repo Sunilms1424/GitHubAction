@@ -36,6 +36,12 @@ jobs:
       run: |
         cd src
         python -m pytest addition.py
+    - name: Install SonarQube Scanner
+      run: |
+        curl -sS https://downloads.sonarsource.com/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner.zip
+        unzip sonar-scanner.zip
+        sudo mv sonar-scanner-4.6.2.2472-linux /usr/local/sonar-scanner
+        
     - name: sonar scanner
       env: 
         SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}
